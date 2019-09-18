@@ -78,9 +78,7 @@
       }
     },
     computed:{
-      session (){
-        return this.$store.state.session.user;
-      }
+   
     },
     methods:{
        onChange(value) {
@@ -90,12 +88,10 @@
       Authentifier(e){
         e.preventDefault();
         this.form.validateFields((err,values)=>{
-          //this.$store.$warehouse('session/setSession',values);
           let args = Object.assign({grille:this.value},values)
           this.$warehouse.set('connexionCamera',args);
           this.$router.push(`/admin`);
         });
-        //console.log(this.$store.state.session.user);
         
       }
     }
