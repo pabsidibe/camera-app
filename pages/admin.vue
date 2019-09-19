@@ -7,7 +7,7 @@
                            
                       
                         <div v-if="getCameraById(item,detail) && getCameraById(item,detail).id">
-                         {{cnx.ip+'/axis-cgi/mjpg/video.cgi?user='+cnx.login+'&pwd='+cnx.password+'&cameraId='+getCameraById(item,detail).id+'&fps=1&compression='+cnx.compression+'&resolution='+cnx.width+'x'+cnx.width}}
+                         {{cnx.ip+'/axis-cgi/mjpg/video.cgi?user='+cnx.login+'&pwd='+cnx.password+'&cameraId='+getCameraById(item,detail).id+'&fps=1&compression='+cnx.compression+'&resolution='+cnx.width+'x'+cnx.height}}
                        
                         </div>
                         <div v-else>{{getCameraById(item,detail)}} </div>
@@ -106,7 +106,7 @@ export default {
   },
   
     mounted() {
-       
+        // console.log(this.$store.$warehouse.get('connexionCamera'),'my store')
       this.cnx = this.$store.$warehouse.get('connexionCamera');
         // console.log(cnx.login+'ouica')
     },

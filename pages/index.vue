@@ -89,7 +89,7 @@
         e.preventDefault();
         this.form.validateFields((err,values)=>{
           let args = Object.assign({grille:this.value},values)
-          this.$warehouse.set('connexionCamera',args);
+          this.$store.$warehouse.set('connexionCamera',args);
           this.$router.push(`/admin`);
         });
         
