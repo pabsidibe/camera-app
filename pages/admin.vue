@@ -106,7 +106,7 @@ export default {
   },
   
     mounted() {
-        console.log(this.$store.$warehouse.get('connexionCamera'),'my store')
+       
       this.cnx = this.$store.$warehouse.get('connexionCamera');
         // console.log(cnx.login+'ouica')
     },
