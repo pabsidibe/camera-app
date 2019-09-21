@@ -23,15 +23,46 @@
               </a-input>
             </a-form-item>
               <a-form-item>
-              <a-input v-decorator="['compression',{rules: [{ required: true, message: 'La compression est requise' }]}]" placeholder="Compression">
-               
-              </a-input>
+              
+                 <a-select   v-decorator="['compression',{rules: [{ required: true, message: 'La compression est requise' }]}]" placeholder="Compression">
+        <a-select-option value="50">
+         50
+        </a-select-option>
+        <a-select-option value="60">
+         60
+        </a-select-option>
+        <a-select-option value="70">
+        70
+        </a-select-option>
+        
+      </a-select>
             </a-form-item>
              <a-row>
               <a-col  :span="12">
                 <a-form-item>
+
+                   <a-select @change="onChange" placeholder="Grilles" v-decorator="['grille',{rules: [{ required: true, message: 'La resolution est requise' }]}]">
+        <a-select-option value="2">
+         2 x 2
+        </a-select-option>
+        <a-select-option value="3">
+          3 x 3
+        </a-select-option>
+        <a-select-option value="4">
+          4 x 4
+        </a-select-option>
+         <!-- <a-select-option value="5">
+         5 x 5
+        </a-select-option>
+        <a-select-option value="6">
+          6 x 6
+        </a-select-option>
+        <a-select-option value="7">
+         7 x 7
+        </a-select-option> -->
+      </a-select>
                
-              <a-input-number  :min="1" :max="10" v-model="value" @change="onChange" /> {{value}} * {{value}}
+              <!-- <a-input-number  :min="1" :max="10" v-model="value" @change="onChange" /> {{value}} * {{value}} -->
             </a-form-item>
               </a-col>
               <a-col  :span="12">
@@ -74,7 +105,7 @@
     data() {
       return{
         form:this.$form.createForm(this),
-        value : 3
+       
       }
     },
     computed:{
@@ -82,13 +113,15 @@
     },
     methods:{
        onChange(value) {
-        console.log('changed', value,this.value);
-        this.value = value;
+        console.log('changed', value);
+        // this.value = value;
       },
       Authentifier(e){
         e.preventDefault();
         this.form.validateFields((err,values)=>{
-          let args = Object.assign({grille:this.value},values)
+          console.log(values)
+         let args = Object.assign(values ,{grille:parseInt(values.grille)})
+           console.log(args)
           this.$store.$warehouse.set('connexionCamera',args);
           this.$router.push(`/admin`);
         });

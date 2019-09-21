@@ -1,7 +1,7 @@
 <template>
-    <section>
+    <section class="test">
    
-          <table border="1" v-if="cnx && cnx.grille">
+          <!-- <table border="1" v-if="cnx && cnx.grille">
                 <tr  v-for="item in parseInt(cnx.grille)" :key="item" >
                     <td style="width:200px" v-for="detail in  parseInt(cnx.grille)" :key="detail">
                            
@@ -13,6 +13,21 @@
                         <div v-else>{{getCameraById(item,detail)}} </div>
                     </td>
                 </tr>
+                 </table> -->
+
+  <a-row v-for="item in cnx.grille" :key="item">
+      <a-col :span="24/ cnx.grille" v-for="detail in  cnx.grille" :key="detail" style="border:1px solid black">
+  <div v-if="getCameraById(item,detail) && getCameraById(item,detail).id">
+                         {{cnx.ip+'/axis-cgi/mjpg/video.cgi?user='+cnx.login+'&pwd='+cnx.password+'&cameraId='+getCameraById(item,detail).id+'&fps=1&compression='+cnx.compression+'&resolution='+cnx.width+'x'+cnx.height}}
+                       
+                        </div>
+                        <div v-else>{{getCameraById(item,detail)}} </div>
+      </a-col>
+  </a-row>
+
+
+
+
 
       <!-- <tr>
         <td><p>
@@ -40,7 +55,7 @@
              <td><p><img src="http://10.0.1.12:8083/axis-cgi/mjpg/video.cgi?camera=2&fps=1&compression=60&resolution=320x240" alt="Camera 2" /><br/>
             Camera 2 [320x240, 1fps]</p></td>
       </tr> -->
-    </table>
+   
     </section>
 </template>
 <script>
@@ -106,7 +121,7 @@ export default {
   },
   
     mounted() {
-        // console.log(this.$store.$warehouse.get('connexionCamera'),'my store')
+         console.log(this.$store.$warehouse.get('connexionCamera'),'my store')
       this.cnx = this.$store.$warehouse.get('connexionCamera');
         // console.log(cnx.login+'ouica')
     },
@@ -129,6 +144,9 @@ export default {
 }
 </script>
 <style>
+.test{
+        overflow-wrap: break-word !important;
+}
 /* .colP{
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;
