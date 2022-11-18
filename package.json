@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^1.1.10",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "store": "^2.0.12",
     "vue-warehouse": "^1.0.2"
   },
